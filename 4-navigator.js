@@ -2,9 +2,6 @@ const positionLatitude = 10;   // текущее положение ширина
 const positionLongitude = 20;   // долгота
 
 
-function calculateDiagonal(positionLatitude, positionLongitude) {
-    const diagonal = Math.sqrt(positionLatitude * positionLatitude + positionLongitude * positionLongitude);
-    return diagonal;
-}
-const diagonal = calculateDiagonal(positionLatitude, positionLongitude);
+const diagonal = ((positionLatitude ** 2) + (positionLongitude ** 2)) **0.5;
+
 console.log("Диагональ прямоугольника: " + diagonal);
