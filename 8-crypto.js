@@ -1,22 +1,29 @@
-const crypto = ['dassworp']; 
-
 function encrypt(password) {
-    const firstChar = password[0]; 
-    const lastChar = password[password.length - 1]; 
-    const middle = password.slice(1, -1); 
-    return lastChar + middle + firstChar; 
-}
-
-function check(inputPassword) {
-    const encryptedInput = encrypt(inputPassword); 
-    const encryptedStored = encrypt(crypto[0]); 
-    if (encryptedInput === encryptedStored) { 
-        return true;
-    } else {
-        return false;
+    if (!password || password.length < 2) return password;
+    
+    const chars = password.split('');
+    [chars[0], chars[chars.length - 1]] = [chars[chars.length - 1], chars[0]];
+    
+    if (chars.length > 2) {
+        [chars[1], chars[chars.length - 2]] = [chars[chars.length - 2], chars[1]];
     }
+    
+    return chars.join('');
 }
 
-const password = 'dassworp'; 
-console.log(check(password));
+function decrypt(encrypted) {
+    return encrypt(encrypted);
+}
 
+function check(inputPassword, storedPassword) {
+    const decrypted = decrypt(inputPassword);
+    return decrypted === storedPassword;
+}
+
+const originalPassword = 'dassworp';
+const encrypted = encrypt(originalPassword); 
+
+console.log(encrypted); 
+console.log(decrypt(encrypted)); 
+console.log(check(encrypted, originalPassword)); 
+console.log(check('wrong', originalPassword)); 
