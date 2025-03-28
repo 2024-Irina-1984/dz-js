@@ -1,7 +1,7 @@
 const inputArray = [3, 6, 9, 2];
-const result = [];
 
  function inverseFilter(array, shouldDelete) {
+    const result = [];
     for(let i = 0;  i < array.length; i++) {
         const currentElement = array[i];
         if (!shouldDelete(currentElement)) {
@@ -16,3 +16,7 @@ function shouldDeleteGreaterThan5(number) {
 const filteredArray = inverseFilter(inputArray, shouldDeleteGreaterThan5);
 
 console.log(filteredArray); 
+
+
+
+
